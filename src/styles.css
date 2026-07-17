@@ -121,11 +121,11 @@ footer{background:#04110f;color:white;padding:0 7vw}.footer-cta{padding:85px 0;d
   h1,h2,h3,p,b,small,span{overflow-wrap:anywhere}
 
   .hero.hero-campaign{
-    min-height:1000px;
+    min-height:940px;
     grid-template-columns:minmax(0,1fr);
-    grid-template-rows:auto 370px;
+    grid-template-rows:auto 310px;
     padding:108px 18px 28px;
-    background-position:center;
+    background-image:radial-gradient(circle at 50% 78%,#123a37 0,#071d21 35%,#021118 72%);
   }
   .hero-campaign .hero-copy{width:100%;max-width:520px;margin-inline:auto;position:relative;z-index:6}
   .hero-campaign .hero-copy h1{font-size:clamp(40px,12vw,50px);line-height:1.15;letter-spacing:-1.5px;margin:22px 0 18px}
@@ -133,21 +133,41 @@ footer{background:#04110f;color:white;padding:0 7vw}.footer-cta{padding:85px 0;d
   .hero-campaign .hero-actions{margin-top:24px}
   .hero-campaign .trust-row{margin-top:26px;flex-wrap:wrap;row-gap:10px}
 
-  .hero-campaign-visual{width:100%;height:370px;margin:12px 0 0;position:relative;z-index:3;overflow:visible}
-  .hero-campaign-robot{left:34%;bottom:0;width:220px;height:280px}
-  .robot-platform-glow{left:34%;bottom:0;width:215px;height:62px}
+  .hero-campaign-visual{
+    width:100%;
+    height:310px;
+    margin:20px 0 0;
+    position:relative;
+    z-index:3;
+    overflow:visible;
+    border-radius:16px;
+    background-image:linear-gradient(180deg,transparent 58%,rgba(2,17,24,.86) 100%),var(--hero-campaign-image);
+    background-repeat:no-repeat;
+    background-size:100% auto;
+    background-position:center top;
+    box-shadow:0 18px 48px rgba(0,0,0,.28);
+  }
+  .hero-energy-flow{
+    inset:auto 18px 28px;
+    height:310px;
+    border-radius:16px;
+    background-size:100% auto;
+    background-position:center top;
+    opacity:.55;
+  }
+  .hero-campaign-robot{left:32%;bottom:0;width:190px;height:238px}
+  .robot-platform-glow{left:32%;bottom:0;width:185px;height:55px}
   .hero-campaign-robot .scene-robot-copy{
-    top:20px;
+    top:43px;
     right:auto;
-    left:calc(100% - 18px);
-    width:138px;
-    max-width:calc(100vw - 200px);
+    left:calc(100% - 8px);
+    width:145px;
+    max-width:calc(100vw - 190px);
     padding:9px 10px;
     text-align:right;
   }
   .hero-campaign-robot .scene-robot-copy b{font-size:9px;line-height:1.55;white-space:normal}
-  .hero-campaign-visual .stat-a{top:48%;right:0}
-  .hero-campaign-visual .stat-b{bottom:3%;left:0}
+  .hero-campaign-visual .floating-stat{display:none}
 
   .campaign-slider{width:calc(100% + 44px);max-width:none;margin-inline:-22px}
   .campaign-frame{width:100%;aspect-ratio:3/1}
@@ -162,15 +182,14 @@ footer{background:#04110f;color:white;padding:0 7vw}.footer-cta{padding:85px 0;d
 }
 
 @media(max-width:390px){
-  .hero.hero-campaign{min-height:1010px;padding-inline:15px;grid-template-rows:auto 355px}
+  .hero.hero-campaign{min-height:930px;padding-inline:15px;grid-template-rows:auto 295px}
   .hero-campaign .hero-copy h1{font-size:39px}
   .hero-campaign .eyebrow{font-size:10px}
-  .hero-campaign-visual{height:355px}
-  .hero-campaign-robot{left:33%;width:205px;height:265px}
-  .robot-platform-glow{left:33%;width:198px}
-  .hero-campaign-robot .scene-robot-copy{left:calc(100% - 14px);width:132px;max-width:calc(100vw - 190px)}
-  .hero-campaign-visual .floating-stat{padding:7px 8px;gap:7px}
-  .hero-campaign-visual .floating-stat>span{width:29px;height:29px}
+  .hero-campaign-visual,.hero-energy-flow{height:295px}
+  .hero-energy-flow{inset:auto 15px 28px}
+  .hero-campaign-robot{left:31%;width:178px;height:225px}
+  .robot-platform-glow{left:31%;width:174px}
+  .hero-campaign-robot .scene-robot-copy{left:calc(100% - 5px);width:138px;max-width:calc(100vw - 178px)}
   .campaign-metrics{gap:6px}
   .campaign-metrics span{padding:8px 6px}
 }
