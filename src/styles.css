@@ -112,3 +112,65 @@ footer{background:#04110f;color:white;padding:0 7vw}.footer-cta{padding:85px 0;d
 @keyframes heroRobotStepIn{0%{opacity:0;transform:translateX(-78px) translateY(12px) rotate(-3deg) scale(.94)}25%{opacity:1;transform:translateX(-53px) translateY(-7px) rotate(2.2deg) scale(.97)}46%{transform:translateX(-31px) translateY(3px) rotate(-1.5deg) scale(.985)}68%{transform:translateX(-12px) translateY(-4px) rotate(.8deg) scale(.995)}84%{transform:translateX(-4px) translateY(1px) rotate(-.3deg) scale(1)}100%{opacity:1;transform:translateX(0) translateY(0) rotate(0) scale(1)}}
 @keyframes heroRobotMessageOpen{0%{opacity:0;clip-path:inset(0 100% 0 0 round 8px);transform:translateX(-12px) scaleX(.2)}100%{opacity:1;clip-path:inset(0 0 0 0 round 8px);transform:translateX(0) scaleX(1)}}
 @media(prefers-reduced-motion:reduce){.hero-energy-flow,.hero-campaign-robot.in-view img,.hero-campaign-robot.in-view .scene-robot-copy{animation:none}.hero-campaign-robot.in-view img,.hero-campaign-robot.in-view .scene-robot-copy{opacity:1;transform:none;clip-path:none}}
+
+/* Final mobile containment and hero separation */
+@media(max-width:760px){
+  html,body,#root,.site-shell,.store-page{width:100%;max-width:100%;overflow-x:clip}
+  main,section,article,header,footer,.hero-copy,.hero-campaign-visual,.calc-panel,.project-campaign-banner,.academy-copy,.deal-strip,.deal-track{min-width:0;max-width:100%}
+  img{display:block;max-width:100%;height:auto}
+  h1,h2,h3,p,b,small,span{overflow-wrap:anywhere}
+
+  .hero.hero-campaign{
+    min-height:1000px;
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto 370px;
+    padding:108px 18px 28px;
+    background-position:center;
+  }
+  .hero-campaign .hero-copy{width:100%;max-width:520px;margin-inline:auto;position:relative;z-index:6}
+  .hero-campaign .hero-copy h1{font-size:clamp(40px,12vw,50px);line-height:1.15;letter-spacing:-1.5px;margin:22px 0 18px}
+  .hero-campaign .hero-copy>p{font-size:13px;line-height:1.9;max-width:36rem;margin-inline:auto}
+  .hero-campaign .hero-actions{margin-top:24px}
+  .hero-campaign .trust-row{margin-top:26px;flex-wrap:wrap;row-gap:10px}
+
+  .hero-campaign-visual{width:100%;height:370px;margin:12px 0 0;position:relative;z-index:3;overflow:visible}
+  .hero-campaign-robot{left:34%;bottom:0;width:220px;height:280px}
+  .robot-platform-glow{left:34%;bottom:0;width:215px;height:62px}
+  .hero-campaign-robot .scene-robot-copy{
+    top:20px;
+    right:auto;
+    left:calc(100% - 18px);
+    width:138px;
+    max-width:calc(100vw - 200px);
+    padding:9px 10px;
+    text-align:right;
+  }
+  .hero-campaign-robot .scene-robot-copy b{font-size:9px;line-height:1.55;white-space:normal}
+  .hero-campaign-visual .stat-a{top:48%;right:0}
+  .hero-campaign-visual .stat-b{bottom:3%;left:0}
+
+  .campaign-slider{width:calc(100% + 44px);max-width:none;margin-inline:-22px}
+  .campaign-frame{width:100%;aspect-ratio:3/1}
+  .campaign-frame img{position:static;width:100%;max-width:100%;height:100%;object-fit:contain;object-position:center}
+  .campaign-arrow{width:32px;height:32px}
+
+  .service-photo-banner,.project-campaign-banner,.commerce-banner,.promo-card,.academy.academy-campaign{width:100%;max-width:100%}
+  .campaign-metrics,.academy-highlights,.assurances{min-width:0}
+  .campaign-metrics span,.academy-highlights span,.assurances span{min-width:0}
+  .store-artwork img,.store-artwork.nano img,.store-artwork.plasma img,.deal-image img,.deal-image.nano img,.deal-image.plasma img{max-width:100%;object-fit:contain}
+  .real-product-info,.detail-copy,.commerce-banner>div{min-width:0;max-width:100%}
+}
+
+@media(max-width:390px){
+  .hero.hero-campaign{min-height:1010px;padding-inline:15px;grid-template-rows:auto 355px}
+  .hero-campaign .hero-copy h1{font-size:39px}
+  .hero-campaign .eyebrow{font-size:10px}
+  .hero-campaign-visual{height:355px}
+  .hero-campaign-robot{left:33%;width:205px;height:265px}
+  .robot-platform-glow{left:33%;width:198px}
+  .hero-campaign-robot .scene-robot-copy{left:calc(100% - 14px);width:132px;max-width:calc(100vw - 190px)}
+  .hero-campaign-visual .floating-stat{padding:7px 8px;gap:7px}
+  .hero-campaign-visual .floating-stat>span{width:29px;height:29px}
+  .campaign-metrics{gap:6px}
+  .campaign-metrics span{padding:8px 6px}
+}
