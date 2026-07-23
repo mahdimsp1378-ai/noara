@@ -30,6 +30,9 @@ import campaignIndustrial from './assets/campaigns/industrial.webp';
 import campaignSolarLighting from './assets/campaigns/solar-lighting.webp';
 import campaignBatteryInverter from './assets/campaigns/battery-inverter.webp';
 import aronageLogo from './assets/brand/aronage-logo.svg';
+import solarEngineering from './assets/about/solar-engineering.js';
+import cleanDataCenter from './assets/about/clean-data-center.js';
+import energyRdTeam from './assets/about/energy-rd-team.js';
 
 const robotScenes = [
   { id:'top', image:robotSun, side:'left', kicker:'آغاز سفر', title:'سلام، من «رایا» هستم!', text:'راهنمای انرژی شما. بیا ببینیم نور خورشید چطور به یک سرمایه‌گذاری ماندگار تبدیل می‌شود.' },
@@ -196,7 +199,31 @@ function App(){
 
       <section className="company-intro" id="about" aria-labelledby="company-title">
         <div className="company-brand-panel"><BrandLogo/><p>انرژی پاک، زیرساخت پایدار و آینده‌ای روشن‌تر.</p><div className="company-contact"><a href={phoneHref}><Phone/> ۰۹۱۲۶۱۹۳۹۸۴</a><a href="tel:+989339609030"><Phone/> ۰۹۳۳۹۶۰۹۰۳۰</a><a href="tel:+989126910915"><Phone/> ۰۹۱۲۶۹۱۰۹۱۵</a></div></div>
-        <div className="company-story"><div className="section-label">درباره شرکت</div><h2 id="company-title">شرکت <em>آروناژ انرژی</em></h2><p>آروناژ انرژی با هدف توسعه و گسترش انرژی‌های پاک و پایدار تأسیس شده است. ما با تکیه بر دانش فنی، تیم متخصص و رویکرد نوآورانه، راهکارهای مشاوره، مدیریت و راه‌اندازی نیروگاه‌های خورشیدی و مراکز پردازش داده را ارائه می‌کنیم تا وابستگی به سوخت‌های فسیلی کاهش یابد و زیرساخت‌های اقتصاد سبز توسعه پیدا کند.</p><div className="activity-grid">{companyActivities.map(([Icon,title,text])=><article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}</div><div className="company-address"><MapPin/><span><b>دفتر آروناژ انرژی</b>تهران، احمدآباد مستوفی، خیابان احسانی‌راد، سازمان پژوهش‌های علمی و صنعتی ایران، پارک علم و فناوری</span></div></div>
+        <div className="company-story">
+          <div className="section-label">درباره شرکت</div>
+          <h2 id="company-title">شرکت <em>آروناژ انرژی</em></h2>
+          <div className="company-lead">
+            <p>آروناژ انرژی با هدف توسعه و گسترش انرژی‌های پاک و پایدار تأسیس شده و مأموریت خود را ایجاد پیوندی عملی میان دانش مهندسی، سرمایه‌گذاری هوشمند و زیرساخت‌های نوین انرژی تعریف کرده است. ما پروژه را فقط به‌عنوان نصب تجهیزات نمی‌بینیم؛ هر طرح از شناخت دقیق نیاز، شرایط اقلیمی، الگوی مصرف و توجیه اقتصادی آغاز می‌شود و تا راه‌اندازی، پایش و بهره‌برداری مطمئن ادامه پیدا می‌کند.</p>
+            <p>تمرکز اصلی شرکت بر طراحی و اجرای نیروگاه‌های خورشیدی، امکان‌سنجی پروژه‌های انرژی سبز و راه‌اندازی مراکز پردازش داده با تکیه بر انرژی‌های تجدیدپذیر است. آروناژ با رویکردی یکپارچه تلاش می‌کند هزینه انرژی را به یک سرمایه مولد تبدیل کند، بهره‌وری زیرساخت‌ها را افزایش دهد و مسیر ورود کسب‌وکارها و سرمایه‌گذاران به اقتصاد سبز را شفاف‌تر و کم‌ریسک‌تر سازد.</p>
+            <p>تیم فنی و مدیریتی ما در هر مرحله، از انتخاب فناوری و تأمین تجهیزات تا کنترل کیفیت، مدیریت اجرا و تحقیق‌وتوسعه، کنار کارفرما می‌ماند. هدف نهایی ما ارائه راهکاری متناسب با واقعیت هر پروژه است؛ راهکاری که هم از نظر فنی پایدار باشد، هم از نظر اقتصادی قابل دفاع و هم در بلندمدت ارزش‌آفرین باقی بماند.</p>
+          </div>
+          <div className="company-pillars">
+            <article>
+              <img src={solarEngineering} alt="مهندسان آروناژ در حال پایش یک نیروگاه خورشیدی" loading="lazy" decoding="async"/>
+              <div><span>طراحی تا اجرا</span><h3>نیروگاه خورشیدی متناسب با واقعیت پروژه</h3><p>از بازدید سایت و تحلیل تابش تا طراحی مهندسی، انتخاب تجهیزات، اجرای EPC و پایش عملکرد؛ تمام اجزای پروژه با نگاه یکپارچه و قابل اندازه‌گیری مدیریت می‌شوند.</p></div>
+            </article>
+            <article>
+              <img src={cleanDataCenter} alt="مرکز پردازش داده مجهز به انرژی خورشیدی و ذخیره‌ساز" loading="lazy" decoding="async"/>
+              <div><span>انرژی و داده</span><h3>زیرساخت پردازش پایدار و بهینه</h3><p>برای مراکز پردازش داده و فارم‌های رمز ارز، مصرف انرژی، پایداری برق، ظرفیت توسعه و اقتصاد پروژه هم‌زمان بررسی می‌شود تا زیرساختی مطمئن و بهینه شکل بگیرد.</p></div>
+            </article>
+            <article>
+              <img src={energyRdTeam} alt="تیم مهندسی آروناژ در حال بررسی طرح توسعه انرژی پاک" loading="lazy" decoding="async"/>
+              <div><span>تحقیق و توسعه</span><h3>تصمیم‌گیری بر پایه داده و دانش فنی</h3><p>امکان‌سنجی فنی و اقتصادی، مدل‌سازی سناریوهای سرمایه‌گذاری و توسعه راهکارهای نو، پایه تصمیم‌هایی هستند که ریسک پروژه را کاهش و ارزش بلندمدت آن را افزایش می‌دهند.</p></div>
+            </article>
+          </div>
+          <div className="activity-grid">{companyActivities.map(([Icon,title,text])=><article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+          <div className="company-address"><MapPin/><span><b>دفتر آروناژ انرژی</b>تهران، احمدآباد مستوفی، خیابان احسانی‌راد، سازمان پژوهش‌های علمی و صنعتی ایران، پارک علم و فناوری</span></div>
+        </div>
       </section>
 
       <section className="intro" data-robot-scene="technology">
