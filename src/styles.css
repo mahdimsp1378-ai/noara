@@ -193,3 +193,46 @@ footer{background:#04110f;color:white;padding:0 7vw}.footer-cta{padding:85px 0;d
   .campaign-metrics{gap:6px}
   .campaign-metrics span{padding:8px 6px}
 }
+/* Aronage brand system and final UX pass */
+:root{--aronage-green:#08943f;--aronage-lime:#62d516;--aronage-ink:#10212a}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+button,a,[role="link"],[role="button"],input,select{touch-action:manipulation}
+button:focus-visible,a:focus-visible,[role="link"]:focus-visible,[role="button"]:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffd16e;outline-offset:3px}
+.brand-with-logo{min-width:180px;height:58px;padding:0;border:0;background:transparent;overflow:visible}
+.brand-logo{display:block;width:180px;height:54px;border-radius:11px;background-color:white;background-image:var(--brand-logo);background-repeat:no-repeat;background-position:center 51%;background-size:166%;box-shadow:0 7px 24px rgba(0,0,0,.14)}
+.brand-logo.light{box-shadow:0 7px 24px rgba(0,0,0,.28)}
+.trust-row span{display:flex;align-items:center;gap:7px}.trust-row span b{display:grid;place-items:center}.trust-row svg{width:18px;height:18px}
+.card-arrow{width:39px;height:39px;border-radius:50%;background:#eaf7f1;display:grid;place-items:center;color:var(--green)}.card-arrow svg{width:18px}
+.promo-link{border-bottom:1px solid rgba(255,255,255,.55);color:white!important;padding:7px 0;display:flex;align-items:center;gap:9px}.promo-link svg{width:17px}
+.real-product-card:focus-visible,.deal-card:focus-visible,.tech-card:focus-visible,.promo-card:focus-visible{outline:3px solid var(--aronage-green);outline-offset:4px}
+
+.company-intro{padding:105px 7vw;background:radial-gradient(circle at 12% 18%,rgba(98,213,22,.12),transparent 27%),#f5f7f2;display:grid;grid-template-columns:minmax(300px,.72fr) minmax(0,1.45fr);gap:clamp(42px,7vw,110px);align-items:start}
+.company-brand-panel{position:sticky;top:105px;padding:30px;border-radius:25px;background:linear-gradient(145deg,#fff,#edf5ed);border:1px solid #d8e3da;box-shadow:0 25px 70px rgba(13,67,43,.11)}
+.company-brand-panel .brand-logo{width:100%;height:auto;aspect-ratio:1.8/1;background-size:142%;background-position:center 50%;box-shadow:none;border:1px solid #e2e7e1}
+.company-brand-panel>p{margin:20px 0;color:#5f7068;line-height:1.9;font-size:13px}
+.company-contact{display:grid;gap:8px}.company-contact a{min-height:44px;padding:0 13px;border-radius:10px;background:white;border:1px solid #dbe4dc;color:#244c3c;display:flex;align-items:center;gap:9px;font-size:12px;direction:ltr;justify-content:flex-end}.company-contact svg{width:16px;color:var(--aronage-green)}
+.company-story>h2{margin:15px 0 20px}.company-story>p{color:#5f7068;line-height:2.15;max-width:890px}
+.activity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:30px}.activity-grid article{display:flex;gap:13px;padding:17px;border:1px solid #d9e3db;background:rgba(255,255,255,.78);border-radius:14px}.activity-grid article:last-child{grid-column:1/-1}.activity-grid article>svg{flex:0 0 38px;width:38px;height:38px;padding:8px;border-radius:11px;background:#e8f7e7;color:var(--aronage-green)}.activity-grid h3{font-size:14px;margin-bottom:4px}.activity-grid p{font-size:10px;line-height:1.8;color:#718078}
+.company-address{margin-top:18px;padding:18px;border-radius:14px;background:#0d3b30;color:white;display:flex;gap:13px;align-items:flex-start}.company-address>svg{flex:0 0 24px;color:#b9ef5e}.company-address span{display:grid;gap:5px;font-size:11px;line-height:1.9;color:#bdd0c8}.company-address b{color:white;font-size:13px}
+
+.deal-track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));overflow:visible;gap:4px}.deal-card{min-width:0;max-width:none;scroll-snap-align:start}
+.modal{border-radius:18px}.modal-close{width:44px;height:44px;display:grid;place-items:center;border-radius:50%}.modal:focus{outline:none}
+
+@media(max-width:1050px){
+  .brand-with-logo{min-width:150px}.brand-logo{width:150px}
+  .company-intro{grid-template-columns:1fr}.company-brand-panel{position:static;display:grid;grid-template-columns:minmax(240px,.7fr) 1fr;gap:20px;align-items:center}.company-brand-panel .brand-logo{grid-row:1/3}.company-contact{grid-column:2}
+  .deal-track{grid-template-columns:repeat(3,minmax(190px,1fr));overflow-x:auto;scroll-snap-type:x mandatory}
+}
+
+@media(max-width:760px){
+  .brand-with-logo{min-width:126px;height:50px}.brand-logo{width:126px;height:45px;background-size:174%;border-radius:8px}
+  header .head-actions>.btn{display:none}
+  .store-header .menu-btn{display:grid;place-items:center;width:44px;height:44px}
+  .store-header nav.open{display:flex;position:absolute;top:70px;right:0;left:0;padding:18px 22px;background:rgba(4,20,18,.98);flex-direction:column;align-items:stretch;gap:4px;border-top:1px solid rgba(255,255,255,.1)}
+  .store-header nav.open button,.store-header nav.open a{min-height:46px;padding:12px;color:white;border-bottom:1px solid rgba(255,255,255,.08);text-align:right}
+  .company-intro{padding:72px 18px!important;display:block}.company-brand-panel{display:block;padding:18px;margin-bottom:38px}.company-brand-panel .brand-logo{width:100%;height:auto;aspect-ratio:1.75/1;background-size:150%}.company-brand-panel>p{font-size:12px}.company-contact{grid-template-columns:1fr}
+  .company-story>h2{font-size:38px}.company-story>p{font-size:13px}.activity-grid{grid-template-columns:1fr}.activity-grid article:last-child{grid-column:auto}.activity-grid article{padding:15px}.company-address{padding:15px}
+  .deal-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.deal-track::-webkit-scrollbar{display:none}.deal-card{flex:0 0 min(78vw,245px)}
+  .modal-backdrop{padding:12px}.modal{max-height:calc(100dvh - 24px);overflow-y:auto;padding:52px 20px 24px}
+  .chat{left:16px;bottom:16px}
+}
