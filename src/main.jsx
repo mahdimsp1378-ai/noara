@@ -191,7 +191,6 @@ function App(){
           </div>
           <div className="activity-heading"><span>خدمات آروناژ در یک نگاه</span><Button onClick={()=>setModal(true)}>درخواست مشاوره <ArrowLeft/></Button></div>
           <div className="activity-grid">{companyActivities.map(([Icon,title,text])=><article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
-          <div className="company-address"><MapPin/><span><b>دفتر آروناژ انرژی</b>تهران، احمدآباد مستوفی، خیابان احسانی‌راد، سازمان پژوهش‌های علمی و صنعتی ایران، پارک علم و فناوری</span></div>
         </div>
       </section>
 
@@ -210,7 +209,7 @@ function App(){
     <footer id="contact" data-robot-scene="contact">
       <div className="footer-cta"><div><small>آماده شروع پروژه‌اید؟</small><h2>برای یک راهکار اختصاصی با ما گفت‌وگو کنید.</h2></div><Button onClick={()=>setModal(true)}>درخواست مشاوره رایگان <ArrowLeft/></Button></div>
       <div className="footer-main"><a className="brand brand-with-logo" href="#top" aria-label="آروناژ انرژی"><BrandLogo light/></a><p>راهکارهای یکپارچه انرژی پاک، نیروگاه خورشیدی و مراکز پردازش داده.</p><div className="footer-links"><span>دسترسی سریع</span><a href="#about">معرفی و خدمات</a><a href="#products">فروشگاه</a><a href="#academy">آموزش</a></div></div>
-      <div className="footer-contact-strip"><div><Phone/><span><small>تماس مستقیم با آروناژ</small><b>برای مشاوره پروژه و استعلام تجهیزات</b></span></div><div className="footer-phone-list"><a href={phoneHref}>۰۹۱۲۶۱۹۳۹۸۴</a><a href="tel:+989339609030">۰۹۳۳۹۶۰۹۰۳۰</a><a href="tel:+989126910915">۰۹۱۲۶۹۱۰۹۱۵</a></div></div>
+      <div className="footer-contact-strip"><div><MapPin/><span><small>دفتر مرکزی آروناژ</small><b>تهران، احمدآباد مستوفی، خیابان احسانی‌راد، سازمان پژوهش‌های علمی و صنعتی ایران، پارک علم و فناوری</b></span></div><div className="footer-phone-list"><a href={phoneHref}>۰۹۱۲۶۱۹۳۹۸۴</a><a href="tel:+989339609030">۰۹۳۳۹۶۰۹۰۳۰</a><a href="tel:+989126910915">۰۹۱۲۶۹۱۰۹۱۵</a></div></div>
       <div className="copyright"><span>© ۱۴۰۵ آروناژ انرژی؛ تمامی حقوق محفوظ است.</span><span>انرژی پاک برای یک آینده روشن <Sun size={14}/></span></div>
     </footer>
 
