@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowLeft, ArrowUpLeft, BatteryCharging, BookOpen, Building2, Check,
@@ -9,14 +9,12 @@ import {
 import '@fontsource-variable/vazirmatn';
 import './styles.css';
 import robotSun from './assets/robot/robot-pose-0.webp';
-import robotEngineer from './assets/robot/robot-pose-1.webp';
 import robotGuide from './assets/robot/robot-pose-3.webp';
 import storeScience from './assets/store/science.webp';
 import solarBanner from './assets/banners/solar-banner.webp';
 import nanoBanner from './assets/banners/nano-banner.webp';
 import plasmaBanner from './assets/banners/plasma-banner.webp';
 import storageBanner from './assets/banners/storage-banner.webp';
-import projectCampaign from './assets/banners/project-campaign.webp';
 import academyWorkshop from './assets/banners/academy-workshop.webp';
 import heroEnergyCampus from './assets/banners/hero-energy-campus.webp';
 import panelProduct from './assets/products/panel-hi-mo.webp';
@@ -34,36 +32,12 @@ import solarEngineering from './assets/about/solar-engineering.js';
 import cleanDataCenter from './assets/about/clean-data-center.js';
 import energyRdTeam from './assets/about/energy-rd-team.js';
 
-const robotScenes = [
-  { id:'top', image:robotSun, side:'left', kicker:'آغاز سفر', title:'سلام، من «رایا» هستم!', text:'راهنمای انرژی شما. بیا ببینیم نور خورشید چطور به یک سرمایه‌گذاری ماندگار تبدیل می‌شود.' },
-  { id:'about', image:robotSun, side:'right', kicker:'سه فناوری، یک مقصد', title:'همه‌چیز از یک هسته شروع می‌شود', text:'خورشید، نانو و پلاسما سه مسیر متفاوت‌اند؛ اما هر سه برای ساختن آینده‌ای پاک‌تر کنار هم قرار می‌گیرند.' },
-  { id:'services', image:robotEngineer, side:'left', kicker:'ایستگاه مهندسی', title:'اینجا ایده تبدیل به نقشه می‌شود', text:'من داده‌های زمین، مصرف و تابش را بررسی می‌کنم؛ تیم ما طراحی، مجوز و اجرای EPC را کامل می‌کند.' },
-  { id:'calculator', image:robotEngineer, side:'right', kicker:'محاسبه هوشمند', title:'ظرفیت مناسب را با هم پیدا کنیم', text:'نوع پروژه و ظرفیت را تغییر بده؛ من همان لحظه یک برآورد اولیه و شفاف برایت آماده می‌کنم.' },
-  { id:'projects', image:robotGuide, side:'left', kicker:'نتیجه در دنیای واقعی', title:'این اعداد فقط عدد نیستند', text:'هر مگاوات یعنی هزینه کمتر، هوای پاک‌تر و بازگشت سرمایه‌ای که قابل اندازه‌گیری است.' },
-  { id:'products', image:robotGuide, side:'right', kicker:'انتخاب مطمئن', title:'هر قطعه، بخشی از یک سیستم است', text:'پنل، باتری و اینورتر باید دقیقاً با هم هماهنگ باشند؛ فقط تجهیزات تأییدشده وارد این مسیر می‌شوند.' },
-  { id:'academy', image:robotGuide, side:'left', kicker:'انتقال تجربه', title:'حالا نوبت ساختن تخصص است', text:'در آکادمی، تجربه واقعی پروژه را قدم‌به‌قدم یاد می‌گیری؛ از طراحی PVsyst تا اجرای نیروگاه.' },
-  { id:'contact', image:robotSun, side:'right', kicker:'پایان مسیر، آغاز پروژه', title:'حالا داستان انرژی شما شروع می‌شود', text:'اگر آماده‌ای، مشخصات پروژه را بفرست تا تیم مهندسی آروناژ مسیر اختصاصی شما را طراحی کند.' },
-];
-
-const services = [
-  { n:'01', icon: DraftingCompass, title:'طراحی و اجرای نیروگاه خورشیدی', text:'طراحی، تأمین تجهیزات، اجرا، تست و تحویل پروژه‌های خورشیدی در مقیاس‌های مختلف.', tag:'طراحی تا بهره‌برداری' },
-  { n:'02', icon: Gauge, title:'امکان‌سنجی و سرمایه‌گذاری', text:'تحلیل فنی و اقتصادی و ارائه مسیر بهینه سرمایه‌گذاری در پروژه‌های انرژی سبز.', tag:'تصمیم‌گیری مبتنی بر داده' },
-  { n:'03', icon: Building2, title:'مراکز پردازش داده پاک', text:'طراحی و راه‌اندازی فارم‌های رمز ارز با تمرکز بر مصرف بهینه و انرژی‌های تجدیدپذیر.', tag:'زیرساخت پردازش پایدار' },
-  { n:'04', icon: Microscope, title:'مدیریت، بهره‌برداری و R&D', text:'مدیریت پروژه، پایش عملکرد و توسعه راهکارهای نوآورانه تولید و مصرف انرژی پاک.', tag:'پایش و نوآوری' },
-];
-
 const companyActivities = [
   [Sun,'نیروگاه خورشیدی','طراحی، تأمین تجهیزات و اجرای پروژه در مقیاس‌های مختلف'],
   [Gauge,'امکان‌سنجی سرمایه‌گذاری','مشاوره فنی و اقتصادی پروژه‌های انرژی سبز'],
   [Building2,'فارم رمز ارز پاک','راه‌اندازی مراکز پردازش داده با انرژی تجدیدپذیر'],
   [Factory,'مدیریت و بهره‌برداری','راه‌اندازی، پایش و مدیریت پروژه‌های انرژی پاک'],
   [Microscope,'تحقیق و توسعه','توسعه راهکارهای نوین تولید و بهره‌وری انرژی'],
-];
-
-const technologies = [
-  {n:'01',icon:Sun,title:'انرژی خورشیدی',text:'موتور اصلی تحول؛ پاک، پایدار و اقتصادی.',image:solarBanner,tone:'solar'},
-  {n:'02',icon:Microscope,title:'فناوری نانو',text:'مواد پیشرفته برای عملکردی فراتر از امروز.',image:nanoBanner,tone:'nano'},
-  {n:'03',icon:Sparkles,title:'فناوری پلاسما',text:'راهکارهای نوین برای صنعت، سلامت و محیط زیست.',image:plasmaBanner,tone:'plasma'},
 ];
 
 const homeCampaigns = [
@@ -135,8 +109,6 @@ function App(){
   const [route,setRoute]=useState(()=>window.location.hash.slice(1)||'/');
   const [menuOpen,setMenuOpen]=useState(false);
   const [modal,setModal]=useState(false);
-  const [capacity,setCapacity]=useState(100);
-  const [usage,setUsage]=useState('industrial');
   const [submitted,setSubmitted]=useState(false);
   const [scrolled,setScrolled]=useState(false);
   const modalRef=useRef(null);
@@ -151,10 +123,6 @@ function App(){
     requestAnimationFrame(()=>modalRef.current?.focus());
     return()=>{document.body.style.overflow='';removeEventListener('keydown',onKey);previous?.focus?.()};
   },[modal]);
-  const price=useMemo(()=>{
-    const base = usage==='industrial'? 34 : usage==='villa'? 42 : 38;
-    return Math.round(capacity*base/100)*100;
-  },[capacity,usage]);
   const go=(id)=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'});setMenuOpen(false)};
   const submitConsultation=event=>{
     event.preventDefault();
@@ -169,9 +137,10 @@ function App(){
     <header className={scrolled?'scrolled':''}>
       <a className="brand brand-with-logo" href="#top" aria-label="آروناژ انرژی"><BrandLogo/></a>
       <nav className={menuOpen?'open':''} aria-label="منوی اصلی">
-        <button onClick={()=>go('services')}>خدمات</button><button onClick={()=>go('projects')}>پروژه‌ها</button>
-        <button onClick={()=>go('products')}>محصولات</button><button onClick={()=>go('academy')}>آکادمی</button>
-        <button onClick={()=>go('about')}>درباره ما</button>
+        <button onClick={()=>go('about')}>معرفی و خدمات</button>
+        <button onClick={()=>go('products')}>فروشگاه</button>
+        <button onClick={()=>go('academy')}>آموزش</button>
+        <button onClick={()=>go('contact')}>تماس با ما</button>
       </nav>
       <div className="head-actions"><button className="icon-btn" onClick={()=>navigateTo('/shop')} aria-label="جستجوی محصولات"><Search size={19}/></button><Button onClick={()=>setModal(true)}>مشاوره رایگان <ArrowUpLeft size={18}/></Button><button className="menu-btn" onClick={()=>setMenuOpen(!menuOpen)} aria-label="منو" aria-expanded={menuOpen}>{menuOpen?<X/>:<Menu/>}</button></div>
     </header>
@@ -200,65 +169,29 @@ function App(){
       <section className="company-intro" id="about" aria-labelledby="company-title">
         <div className="company-brand-panel"><BrandLogo/><p>انرژی پاک، زیرساخت پایدار و آینده‌ای روشن‌تر.</p><div className="company-contact"><a href={phoneHref}><Phone/> ۰۹۱۲۶۱۹۳۹۸۴</a><a href="tel:+989339609030"><Phone/> ۰۹۳۳۹۶۰۹۰۳۰</a><a href="tel:+989126910915"><Phone/> ۰۹۱۲۶۹۱۰۹۱۵</a></div></div>
         <div className="company-story">
-          <div className="section-label">درباره شرکت</div>
-          <h2 id="company-title">شرکت <em>آروناژ انرژی</em></h2>
+          <div className="section-label">معرفی و خدمات آروناژ</div>
+          <h2 id="company-title">انرژی پاک، از <em>ایده تا بهره‌برداری</em></h2>
           <div className="company-lead">
-            <p>آروناژ انرژی با هدف توسعه و گسترش انرژی‌های پاک و پایدار تأسیس شده و مأموریت خود را ایجاد پیوندی عملی میان دانش مهندسی، سرمایه‌گذاری هوشمند و زیرساخت‌های نوین انرژی تعریف کرده است. ما پروژه را فقط به‌عنوان نصب تجهیزات نمی‌بینیم؛ هر طرح از شناخت دقیق نیاز، شرایط اقلیمی، الگوی مصرف و توجیه اقتصادی آغاز می‌شود و تا راه‌اندازی، پایش و بهره‌برداری مطمئن ادامه پیدا می‌کند.</p>
-            <p>تمرکز اصلی شرکت بر طراحی و اجرای نیروگاه‌های خورشیدی، امکان‌سنجی پروژه‌های انرژی سبز و راه‌اندازی مراکز پردازش داده با تکیه بر انرژی‌های تجدیدپذیر است. آروناژ با رویکردی یکپارچه تلاش می‌کند هزینه انرژی را به یک سرمایه مولد تبدیل کند، بهره‌وری زیرساخت‌ها را افزایش دهد و مسیر ورود کسب‌وکارها و سرمایه‌گذاران به اقتصاد سبز را شفاف‌تر و کم‌ریسک‌تر سازد.</p>
-            <p>تیم فنی و مدیریتی ما در هر مرحله، از انتخاب فناوری و تأمین تجهیزات تا کنترل کیفیت، مدیریت اجرا و تحقیق‌وتوسعه، کنار کارفرما می‌ماند. هدف نهایی ما ارائه راهکاری متناسب با واقعیت هر پروژه است؛ راهکاری که هم از نظر فنی پایدار باشد، هم از نظر اقتصادی قابل دفاع و هم در بلندمدت ارزش‌آفرین باقی بماند.</p>
+            <p>آروناژ انرژی با تکیه بر دانش فنی و تیم متخصص، پروژه‌های انرژی پاک را از امکان‌سنجی و طراحی تا تأمین تجهیزات، اجرا، راه‌اندازی و بهره‌برداری مدیریت می‌کند. راهکار هر پروژه بر اساس شرایط واقعی سایت، الگوی مصرف و توجیه اقتصادی آن طراحی می‌شود.</p>
+            <p>حوزه فعالیت ما شامل نیروگاه‌های خورشیدی، مشاوره سرمایه‌گذاری سبز، مراکز پردازش داده با انرژی تجدیدپذیر و تحقیق‌وتوسعه راهکارهای افزایش بهره‌وری انرژی است.</p>
           </div>
           <div className="company-pillars">
             <article>
               <img src={solarEngineering} alt="مهندسان آروناژ در حال پایش یک نیروگاه خورشیدی" loading="lazy" decoding="async"/>
-              <div><span>طراحی تا اجرا</span><h3>نیروگاه خورشیدی متناسب با واقعیت پروژه</h3><p>از بازدید سایت و تحلیل تابش تا طراحی مهندسی، انتخاب تجهیزات، اجرای EPC و پایش عملکرد؛ تمام اجزای پروژه با نگاه یکپارچه و قابل اندازه‌گیری مدیریت می‌شوند.</p></div>
+              <div><span>انرژی خورشیدی</span><h3>طراحی و اجرای نیروگاه</h3><p>از بررسی سایت و طراحی مهندسی تا اجرای EPC و بهره‌برداری.</p></div>
             </article>
             <article>
               <img src={cleanDataCenter} alt="مرکز پردازش داده مجهز به انرژی خورشیدی و ذخیره‌ساز" loading="lazy" decoding="async"/>
-              <div><span>انرژی و داده</span><h3>زیرساخت پردازش پایدار و بهینه</h3><p>برای مراکز پردازش داده و فارم‌های رمز ارز، مصرف انرژی، پایداری برق، ظرفیت توسعه و اقتصاد پروژه هم‌زمان بررسی می‌شود تا زیرساختی مطمئن و بهینه شکل بگیرد.</p></div>
+              <div><span>انرژی و داده</span><h3>مرکز پردازش داده پاک</h3><p>طراحی زیرساخت پایدار و بهینه برای فارم‌های رمز ارز و پردازش داده.</p></div>
             </article>
             <article>
               <img src={energyRdTeam} alt="تیم مهندسی آروناژ در حال بررسی طرح توسعه انرژی پاک" loading="lazy" decoding="async"/>
-              <div><span>تحقیق و توسعه</span><h3>تصمیم‌گیری بر پایه داده و دانش فنی</h3><p>امکان‌سنجی فنی و اقتصادی، مدل‌سازی سناریوهای سرمایه‌گذاری و توسعه راهکارهای نو، پایه تصمیم‌هایی هستند که ریسک پروژه را کاهش و ارزش بلندمدت آن را افزایش می‌دهند.</p></div>
+              <div><span>مهندسی و نوآوری</span><h3>امکان‌سنجی و تحقیق‌وتوسعه</h3><p>تحلیل فنی و اقتصادی برای کاهش ریسک و افزایش بازده سرمایه‌گذاری.</p></div>
             </article>
           </div>
+          <div className="activity-heading"><span>خدمات آروناژ در یک نگاه</span><Button onClick={()=>setModal(true)}>درخواست مشاوره <ArrowLeft/></Button></div>
           <div className="activity-grid">{companyActivities.map(([Icon,title,text])=><article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
           <div className="company-address"><MapPin/><span><b>دفتر آروناژ انرژی</b>تهران، احمدآباد مستوفی، خیابان احسانی‌راد، سازمان پژوهش‌های علمی و صنعتی ایران، پارک علم و فناوری</span></div>
-        </div>
-      </section>
-
-      <section className="intro" data-robot-scene="technology">
-        <div className="section-label">فناوری برای انرژی پاک</div>
-        <h2>سه فناوری، یک چشم‌انداز:<br/><em>ساختن جهانی هوشمندتر.</em></h2>
-        <div className="narrative-line"><span>خورشید</span><i/><span>مواد پیشرفته</span><i/><span>پلاسما</span></div>
-        <div className="tech-triad">
-          {technologies.map(({icon:Icon,...tech})=>{const open=()=>navigateTo('/shop');return <article key={tech.n} className={`tech-card photo-card ${tech.tone}`} style={{'--card-image':`url(${tech.image})`}} role="link" tabIndex="0" onKeyDown={e=>onCardKey(e,open)} onClick={open}><span>{tech.n}</span><div className="tech-icon"><Icon/></div><div><small>راهکار تخصصی آروناژ</small><h3>{tech.title}</h3><p>{tech.text}</p></div><span className="card-arrow" aria-hidden="true"><ArrowUpLeft/></span></article>})}
-        </div>
-      </section>
-
-      <section className="services" id="services" data-robot-scene="engineering">
-        <div className="section-head"><div><div className="section-label">خدمات تخصصی</div><h2>از ایده تا <em>انرژی.</em></h2></div><p>یک تیم متخصص در تمام مسیر کنار شماست؛ از امکان‌سنجی و طراحی تا تأمین، اجرا و بهره‌برداری.</p></div>
-        <div className="service-photo-banner" style={{'--service-image':`url(${solarBanner})`}}><div><span>مهندسی بر پایه داده</span><h3>هر پروژه، یک طراحی اختصاصی</h3><p>از بازدید و امکان‌سنجی تا نقشه‌های اجرایی و تحویل نیروگاه.</p><Button onClick={()=>setModal(true)}>درخواست بازدید فنی <ArrowLeft/></Button></div><span className="service-banner-stat"><b>صفر تا صد</b><small>همراهی در مسیر پروژه</small></span></div>
-        <div className="services-scene">
-          <SceneRobot image={robotEngineer} className="engineer-robot"><small>رایا در ایستگاه مهندسی</small><b>اول داده‌ها را می‌سنجم،<br/>بعد مسیر اجرا را می‌سازیم.</b><span className="scan-line"/></SceneRobot>
-          <div className="service-grid">{services.map(({icon:Icon,...s})=><article className="service-card" key={s.n}><div className="service-top"><span>{s.n}</span><Icon/></div><div><small>{s.tag}</small><h3>{s.title}</h3><p>{s.text}</p></div><button onClick={()=>setModal(true)} aria-label={`مشاوره درباره ${s.title}`}><ArrowUpLeft/></button></article>)}</div>
-        </div>
-      </section>
-
-      <section className="calculator" id="calculator" data-robot-scene="calculator">
-        <div className="calc-copy"><div className="section-label">برآورد هوشمند پروژه</div><h2>سرمایه‌گذاری‌تان را<br/><em>شفاف آغاز کنید.</em></h2><p>با چند انتخاب ساده، برآورد اولیه هزینه طراحی و اجرای پروژه را دریافت کنید. نتیجه نهایی پس از بازدید فنی اعلام می‌شود.</p><ul><li><Check/> محاسبه سریع و رایگان</li><li><Check/> امکان پرداخت مرحله‌ای</li><li><Check/> مشاوره تخصصی با مهندس پروژه</li></ul></div>
-        <div className="calc-panel">
-          <SceneRobot image={robotEngineer} className="calc-robot"><span>ظرفیت را تغییر بده</span><b>محاسبه‌اش با من!</b></SceneRobot>
-          <div className="calc-step"><span>۱</span><div><label>نوع پروژه</label><div className="segmented">{[['industrial','صنعتی',Building2],['villa','ویلا و منزل',House],['invest','سرمایه‌گذاری',Factory]].map(([v,t,I])=><button key={v} onClick={()=>setUsage(v)} className={usage===v?'active':''}><I size={18}/>{t}</button>)}</div></div></div>
-          <div className="calc-step"><span>۲</span><div className="range-wrap"><label>ظرفیت مورد نظر <b>{capacity.toLocaleString('fa-IR')} کیلووات</b></label><input type="range" min="5" max="1000" step="5" value={capacity} onChange={e=>setCapacity(+e.target.value)}/><div className="range-label"><span>۵ kW</span><span>۱ MW</span></div></div></div>
-          <div className="estimate"><div><small>برآورد اولیه پروژه</small><strong>{price.toLocaleString('fa-IR')} <i>میلیون تومان</i></strong><p>این مبلغ تقریبی است و شامل طراحی، تجهیزات و اجراست.</p></div><Button onClick={()=>setModal(true)}>دریافت پیش‌فاکتور <ArrowLeft/></Button></div>
-        </div>
-      </section>
-
-      <section className="projects retail-projects" id="projects" data-robot-scene="results">
-        <div className="project-campaign-banner" style={{'--project-image':`url(${projectCampaign})`}}>
-          <div className="project-campaign-copy"><span>راهکار صنعتی آروناژ</span><h2>هزینه برق کارخانه را<br/><em>به سرمایه تبدیل کنید.</em></h2><p>طراحی نیروگاه صنعتی متناسب با الگوی مصرف؛ از مطالعات فنی و اقتصادی تا تأمین، اجرا و اتصال به شبکه.</p><div className="campaign-metrics"><span><b>فنی</b><small>امکان‌سنجی دقیق</small></span><span><b>اقتصادی</b><small>تحلیل سرمایه‌گذاری</small></span><span><b>EPC</b><small>طراحی تا اجرا</small></span></div><Button onClick={()=>setModal(true)}>دریافت راهکار پروژه <ArrowLeft/></Button></div>
-          <SceneRobot image={robotGuide} className="project-campaign-robot"/>
-          <span className="campaign-location"><b>راهکار نیروگاهی صنعتی</b><small>طراحی، تأمین و اجرای EPC</small></span>
         </div>
       </section>
 
@@ -276,7 +209,7 @@ function App(){
 
     <footer id="contact" data-robot-scene="contact">
       <div className="footer-cta"><SceneRobot image={robotSun} className="footer-robot"/><div><small>رایا تا اینجا مسیر را نشان داد؛ حالا نوبت شماست</small><h2>پروژه شما، نقطه شروع<br/>یک تغییر بزرگ است.</h2></div><Button onClick={()=>setModal(true)}>درخواست مشاوره رایگان <ArrowLeft/></Button></div>
-      <div className="footer-main"><a className="brand brand-with-logo" href="#top" aria-label="آروناژ انرژی"><BrandLogo light/></a><p>راهکارهای یکپارچه نیروگاه خورشیدی، مراکز پردازش داده و مدیریت انرژی برای ساختن آینده‌ای پاک و پایدار.</p><div className="footer-links"><span>دسترسی سریع</span><a href="#about">درباره ما</a><a href="#services">خدمات</a><a href="#products">محصولات</a></div><div className="footer-links"><span>ارتباط با ما</span><a href={phoneHref}>۰۹۱۲۶۱۹۳۹۸۴</a><a href="tel:+989339609030">۰۹۳۳۹۶۰۹۰۳۰</a><a href="tel:+989126910915">۰۹۱۲۶۹۱۰۹۱۵</a></div></div>
+      <div className="footer-main"><a className="brand brand-with-logo" href="#top" aria-label="آروناژ انرژی"><BrandLogo light/></a><p>راهکارهای یکپارچه نیروگاه خورشیدی، مراکز پردازش داده و مدیریت انرژی برای ساختن آینده‌ای پاک و پایدار.</p><div className="footer-links"><span>دسترسی سریع</span><a href="#about">معرفی و خدمات</a><a href="#products">فروشگاه</a><a href="#academy">آموزش</a></div><div className="footer-links"><span>ارتباط با ما</span><a href={phoneHref}>۰۹۱۲۶۱۹۳۹۸۴</a><a href="tel:+989339609030">۰۹۳۳۹۶۰۹۰۳۰</a><a href="tel:+989126910915">۰۹۱۲۶۹۱۰۹۱۵</a></div></div>
       <div className="copyright"><span>© ۱۴۰۵ آروناژ انرژی؛ تمامی حقوق محفوظ است.</span><span>انرژی پاک برای یک آینده روشن <Sun size={14}/></span></div>
     </footer>
 
