@@ -168,7 +168,6 @@ function App(){
       </section>
 
       <section className="company-intro" id="about" aria-labelledby="company-title">
-        <div className="company-brand-panel"><BrandLogo/><p>انرژی پاک، زیرساخت پایدار و آینده‌ای روشن‌تر.</p></div>
         <div className="company-story">
           <div className="section-label">معرفی و خدمات آروناژ</div>
           <h2 id="company-title">انرژی پاک، از <em>ایده تا بهره‌برداری</em></h2>
@@ -209,7 +208,7 @@ function App(){
     </main>
 
     <footer id="contact" data-robot-scene="contact">
-      <div className="footer-cta"><SceneRobot image={robotSun} className="footer-robot"/><div><small>رایا تا اینجا مسیر را نشان داد؛ حالا نوبت شماست</small><h2>پروژه شما، نقطه شروع<br/>یک تغییر بزرگ است.</h2></div><Button onClick={()=>setModal(true)}>درخواست مشاوره رایگان <ArrowLeft/></Button></div>
+      <div className="footer-cta"><div><small>آماده شروع پروژه‌اید؟</small><h2>برای یک راهکار اختصاصی با ما گفت‌وگو کنید.</h2></div><Button onClick={()=>setModal(true)}>درخواست مشاوره رایگان <ArrowLeft/></Button></div>
       <div className="footer-main"><a className="brand brand-with-logo" href="#top" aria-label="آروناژ انرژی"><BrandLogo light/></a><p>راهکارهای یکپارچه نیروگاه خورشیدی، مراکز پردازش داده و مدیریت انرژی برای ساختن آینده‌ای پاک و پایدار.</p><div className="footer-links"><span>دسترسی سریع</span><a href="#about">معرفی و خدمات</a><a href="#products">فروشگاه</a><a href="#academy">آموزش</a></div><div className="footer-links footer-office"><span>دفتر مرکزی</span><p>تهران، احمدآباد مستوفی، پارک علم و فناوری</p></div></div>
       <div className="footer-contact-strip"><div><Phone/><span><small>تماس مستقیم با آروناژ</small><b>برای مشاوره پروژه و استعلام تجهیزات</b></span></div><div className="footer-phone-list"><a href={phoneHref}>۰۹۱۲۶۱۹۳۹۸۴</a><a href="tel:+989339609030">۰۹۳۳۹۶۰۹۰۳۰</a><a href="tel:+989126910915">۰۹۱۲۶۹۱۰۹۱۵</a></div></div>
       <div className="copyright"><span>© ۱۴۰۵ آروناژ انرژی؛ تمامی حقوق محفوظ است.</span><span>انرژی پاک برای یک آینده روشن <Sun size={14}/></span></div>
